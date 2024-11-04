@@ -2,5 +2,5 @@
 $_SERVER = "";
 $_USER = "";
 $_PASSWORD = ""; 
-$_DBNAME = ""; 
- ?> 
+$_DBNAME = "";
+?>
