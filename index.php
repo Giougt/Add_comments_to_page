@@ -1,18 +1,3 @@
-<?php
-include "public/assets/style.css" 
-?> 
-<?php
-$result = '';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $input = $_POST['input_calcul'];
-    try {
-        $sanitized_input = preg_replace('/[^0-9+\-*/(). ]/', '', $input);
-        $result = eval("return $sanitized_input;");
-    } catch (Exception $e) {
-        $result = "Erreur dans l'opération.";
-    }
-}
-?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,16 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" placeholder="Enter text here" class="style1" name="input_text" id="input_text"> 
         <button type="submit">Send</button>
     </form>
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $input_value = htmlspecialchars($_POST['input_text']);
-        if (empty($input_value)) {
-            echo "<br>no value to send<br>";
-        } else {
-            echo "<div id='response'> Comment : " . htmlspecialchars($input_value) . "</div>";
-        }
-    }
-    ?>
+<!-- form for Calculator -->
     <div> Calculator </div>
     <form method="post" action="">
         <input type="text" placeholder="Enter operation here" class="style1" name="input_calcul" id="input_calcul"> 
@@ -58,6 +34,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         Résultat: <?php echo htmlspecialchars($result); ?>
     <?php endif; ?>
 </div>
-
 </body>
 </html>
+<?php
+$result = '';
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $input = $_POST['input_calcul'];
+    try {
+        $sanitized_input = preg_replace('/[^0-9+\-*/(). ]/', '', $input);
+        $result = eval("return $sanitized_input;");
+    } catch (Exception $e) {
+        $result = "Erreur dans l'opération.";
+    }
+}
+?> 
+<?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $input_value = htmlspecialchars($_POST['input_text']);
+        if (empty($input_value)) {
+            echo "<br>no value to send<br>";
+        } else {
+            echo "<div id='response'> Comment : " . htmlspecialchars($input_value) . "</div>";
+        }
+    }
+?>
