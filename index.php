@@ -25,19 +25,42 @@
 </body>
 </html>
 <?php
+// part for calcul input //
 $result = '';
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $input = $_POST['input_calcul'];
+if (isset($_POST['input_calcul'])) {
     try {
-        $sanitized_input = preg_replace('/[^0-9+\-*/(). ]/', '', $input);
-        $result = eval("return $sanitized_input;");
+        $input_value =  htmlspecialchars($_POST['input_calcul']);
+        $split_result = preg_split('/[+\-\/\*]/',$input_value);
+        $operator = strcspn($input_value,"+-/*");
+        //convert string in int //
+        $var1 = (int)$split_result[0];
+        $var2 = (int)$split_result[1];
+        // find operator //
+        $ope = $input_value[$operator];
+        // switch case //
+        $result_ope = 0;
+        switch ($ope) {
+            case '+':
+                $result_ope = $var1 + $var2;
+                break;
+            case '-':
+                $result_ope = $var1 - $var2;
+                break;
+            case '/':
+                $result_ope = $var1 / $var2;
+                break;
+            default:
+                $result_ope = $var1 * $var2;
+        }
+        print_r("Result from operation  $input_value = $result_ope");
     } catch (Exception $e) {
-        $result = "Erreur dans l'opération.";
+        $result = $Exception;
     }
 }
 ?> 
 <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// part for text input //
+    if (isset($_POST["input_text"])) {
         $input_value = htmlspecialchars($_POST['input_text']);
         if (empty($input_value)) {
             echo "<br>no value to send<br>";
