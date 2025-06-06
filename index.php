@@ -4,19 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <style>
-    .style1{
-    background-color: black;
-    color: white; 
-    height: 40px;
-    } 
-    #response{  
-        color: #3498db;
-        background-color: #f0f0f0; 
-        width: fit-content;
-    }
-    </style>
-</head>
+    <link rel="stylesheet" href="public/assets/style.css">
 <body>  
     <div>Add a comment :</div>
     <form method="post" action="">
