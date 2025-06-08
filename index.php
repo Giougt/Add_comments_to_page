@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="public/assets/style.css">
+</head>
 <body>  
     <div>Add a comment :</div>
     <form method="post" action="">
         <input type="text" placeholder="Enter text here" class="style1" name="input_text" id="input_text"> 
-        <button type="submit">Send</button>
+        <button  type="submit">Send</button>
+        <button id="buttonText" type="button">Send</button>
     </form>
 <!-- form for Calculator -->
     <div> Calculator </div>
@@ -17,12 +19,17 @@
         <input type="text" placeholder="Enter operation here" class="style1" name="input_calcul" id="input_calcul"> 
         <button type="submit">Send</button>
     </form>
-<div id="result">
-    <?php if ($result !== ''): ?>
-        Résultat: <?php echo htmlspecialchars($result); ?>
-    <?php endif; ?>
-</div>
+    <div id="result">
+        <?php if (isset($_POST['input_calcul']) || isset($_POST["input_text"])): ?>
+            Résultat: <?php echo htmlspecialchars($result); ?>
+        <?php endif; ?>
+    </div>
+    <div>
+        <!-- img for game -->
+        <img id="plane" src="plane2.png" alt="Description">
+    </div>
 </body>
+<script src="public/assets/script.js"></script>
 </html>
 <?php
 // part for calcul input //
@@ -49,12 +56,16 @@ if (isset($_POST['input_calcul'])) {
             case '/':
                 $result_ope = $var1 / $var2;
                 break;
-            default:
+            case '*':
                 $result_ope = $var1 * $var2;
+                break;
+            default:
+                throw new Exception('Unknow operator');
         }
         print_r("Result from operation  $input_value = $result_ope");
     } catch (Exception $e) {
-        $result = $Exception;
+        echo 'Caught exception :', $e->getMessage(), "\n";
+        
     }
 }
 ?> 

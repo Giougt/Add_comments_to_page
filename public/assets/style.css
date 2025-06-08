@@ -1,4 +1,4 @@
- .style1{
+.style1{
     background-color: black;
     color: white; 
     height: 40px;
@@ -7,4 +7,12 @@
         color: #3498db;
         background-color: #f0f0f0; 
         width: fit-content;
+    }
+
+    #plane{
+        margin-top: 100px;
+        margin-left: 100px;
+        position: relative;
+        left: 0;
+        transition: left 0.2s ease;
     }
