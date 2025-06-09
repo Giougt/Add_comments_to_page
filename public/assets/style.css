@@ -1,3 +1,11 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .style1{
     background-color: black;
     color: white; 
@@ -10,9 +18,27 @@
     }
 
     #plane{
-        margin-top: 100px;
-        margin-left: 100px;
+        position: absolute;  
+        top: -10px;
+        /* start before answer */
+        left: -30px; 
+        z-index: 10; 
+        
+    }
+
+    #progress_bar{
+        width: 400px;
+        height: 34px;
+        border: solid 3px black;
+        background-color: rgb(255, 255, 255);
+        border-radius: 30px;
+        position: relative;  
+        z-index: 1;
+    }
+
+    #game_progress{
         position: relative;
-        left: 0;
-        transition: left 0.2s ease;
+        width: 400px; 
+        height: 150px;
+        border: 1px solid transparent; 
     }
