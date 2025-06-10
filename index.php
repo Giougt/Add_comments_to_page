@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="public/assets/style.css">
 </head>
 <body>  
+        <input type="text">
+    </div>
     <button id="buttonText" type="button">Send</button>
     <div id="game_progress">
         <!-- img for game -->
