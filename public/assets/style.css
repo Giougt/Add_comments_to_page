@@ -19,11 +19,10 @@ body, html {
 
     #plane{
         position: absolute;  
-        top: -10px;
         /* start before answer */
         left: -30px; 
         z-index: 10; 
-        
+        margin-top: -10px;
     }
 
     #progress_bar{
@@ -41,4 +40,24 @@ body, html {
         width: 400px; 
         height: 150px;
         border: 1px solid transparent; 
+    }
+
+    #field_user{
+        margin-bottom: 40px;
+    }
+/* grid cube */
+    #game_square_stat {
+        position: fixed; 
+        top: 0;
+        left: 0;
+        display: grid;
+        grid-template-columns: repeat(8, 5px);
+        grid-template-rows: repeat(8, 5px);
+        gap: 10px; 
+  }
+    .cube{
+        width: 10px;
+        height: 10px;
+        background-color: rgb(255, 255, 255);
+        border: 2px black solid;
     }
