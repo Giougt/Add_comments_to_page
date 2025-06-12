@@ -25,7 +25,9 @@
         </div>
         <!-- img for game -->
         <img id="plane" src="plane2.png" alt="Description">
-        <div id="progress_bar"></div>
+        <div id="progress_bar">
+            <div id="color_progress_bar"></div>
+        </div>
     </div>
 </body>
 <script src="public/assets/script.js"></script>
