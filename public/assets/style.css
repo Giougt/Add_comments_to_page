@@ -57,8 +57,8 @@ body, html {
 /* grid cube */
     #game_square_stat {
         position: fixed; 
-        top: 0;
-        left: 0;
+        top: 10px;
+        left: 10px;
         display: grid;
         grid-template-columns: repeat(8, 5px);
         grid-template-rows: repeat(8, 5px);
