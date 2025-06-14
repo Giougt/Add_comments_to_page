@@ -5,6 +5,7 @@ const response_button = document.getElementById("response_button");
 // counter move plane 
 let position = 0;
 let number_answer = 0;
+let number_correct = 0;
 
 // main function
 // function if response user == True 
@@ -21,10 +22,16 @@ response_button.addEventListener("click", async function(){
         await sleep(1000);
         document.getElementById("field_answer").value="";
         // debug
-        console.log(position);
+        console.log("position",position);
+        console.log("number_answer",number_answer);
         move_plane(position, number_answer);
         // call function for colorize cube (list item so first = 0)
         fill_color(number_answer-1,true);
+        if(number_answer == 8){
+            // reset all counters
+            position = 0;
+            number_answer = 0;
+        }
     } else {
         // count answer for progression
         number_answer = number_answer+ 1
@@ -34,6 +41,11 @@ response_button.addEventListener("click", async function(){
         document.getElementById("field_answer").value="";
         // call function for fill cube
         fill_color(number_answer-1,false);
+        if(number_answer == 8){
+            // reset all counters
+            position = 0;
+            number_answer = 0;
+        }
     }
 });
     
@@ -44,6 +56,8 @@ function move_plane(number_correct, number_answer) {
         img.style.marginLeft = (currentMargin + 50) + 'px';
         fill_progress_bar(number_correct);
     }
+    // debug 
+    console.log("number answer (move_plane)",number_answer);
     // detect end of the round 
     if(number_answer == 8){
         if(number_correct == 8){
@@ -73,6 +87,8 @@ async function win_level(number_correct) {
 
 // move plane to begin after each game 
 function reset_progress(number_correct) {
+    // debug 
+    console.log("reset progress bar")
     // reset position plane 
     const currentMargin = parseInt(window.getComputedStyle(img).marginLeft) || 0;
     img.style.marginLeft = (currentMargin - (50*number_correct)) + 'px';
@@ -83,6 +99,9 @@ function reset_progress(number_correct) {
 // create square for a new game
 function create_square() {
     const space = document.getElementById("game_square_stat");
+    // create new line for round
+    const row = document.createElement("div");
+    row.className = "cube-row";
     for (let index = 0; index < 8; index++) {
         // create div (new cube)
         const cube = document.createElement("div");
@@ -91,6 +110,7 @@ function create_square() {
         // add next to the others cube 
         space.appendChild(cube);
     }
+    space.appendChild(row);
 }
 
 // async function sleep
@@ -130,4 +150,3 @@ async function loose_level(number_correct) {
     reset_progress(number_correct);
 }
 
-// bug , all count not reinitialize ? 

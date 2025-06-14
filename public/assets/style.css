@@ -70,3 +70,8 @@ body, html {
         background-color: rgb(255, 255, 255);
         border: 2px black solid;
     }
+
+    .cube-row {
+    display: flex;
+    gap: 5px; 
+}
