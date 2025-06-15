@@ -93,7 +93,7 @@ function reset_progress(number_correct) {
     const currentMargin = parseInt(window.getComputedStyle(img).marginLeft) || 0;
     img.style.marginLeft = (currentMargin - (50*number_correct)) + 'px';
     // reset text 
-    document.getElementById("progress_bar").textContent="";
+    document.getElementById("color_progress_bar").textContent="";
 }
 
 // create square for a new game
