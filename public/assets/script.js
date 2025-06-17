@@ -150,3 +150,10 @@ async function loose_level(number_correct) {
     reset_progress(number_correct);
 }
 
+// debug plan 
+// 1  declenche tout car jeux dans move_plane et pas accessible quand erreur du joueur 
+// aucun reset de la bar de progress couleur donc attend que 1 bonne reponse pour afficher 1 mais jamais revient a 0%
+// l'avion reset bien
+// le texte innertext , detruit la div progress color donc bah n'existe pu 
+// create square le plus d'itération le plus ca fait n'importe quoi 
+// lors de la creation il faut pouvoir reperer les lignes pour boucler dessus et pas boucler sur la meme ligne 
