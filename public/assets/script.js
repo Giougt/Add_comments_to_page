@@ -1,6 +1,9 @@
+// plane
 const img = document.getElementById('plane');
 // button get 
 const response_button = document.getElementById("response_button");
+// color progress bar
+const bar = document.getElementById("color_progress_bar");
 
 // counter move plane 
 let position = 0;
@@ -27,12 +30,7 @@ response_button.addEventListener("click", async function(){
         move_plane(position, number_answer);
         // call function for colorize cube (list item so first = 0)
         fill_color(number_answer-1,true);
-        if(number_answer == 8){
-            // reset all counters
-            position = 0;
-            number_answer = 0;
-        }
-    } else {
+    } if (answer_user == 2) {
         // count answer for progression
         number_answer = number_answer+ 1
         // notified wrong answer
@@ -41,8 +39,22 @@ response_button.addEventListener("click", async function(){
         document.getElementById("field_answer").value="";
         // call function for fill cube
         fill_color(number_answer-1,false);
-        if(number_answer == 8){
-            // reset all counters
+    }
+    // detect end of the round 
+    if(number_answer == 8){
+        if(number_correct == 8){
+            // player win the round (number_correct for reset position of plane)
+            win_level(number_correct);
+            // reset count
+            position = 0;
+            number_answer = 0;
+        }
+        else if (number_correct < 8 ){
+            // debug
+            console.log("incorrect answer detects");
+            // player loose the round (number_correct for reset position of plane)
+            loose_level(number_correct);
+            // reset count 
             position = 0;
             number_answer = 0;
         }
@@ -58,19 +70,6 @@ function move_plane(number_correct, number_answer) {
     }
     // debug 
     console.log("number answer (move_plane)",number_answer);
-    // detect end of the round 
-    if(number_answer == 8){
-        if(number_correct == 8){
-            // player win the round (number_correct for reset position of plane)
-            win_level(number_correct);
-        }
-        else if (number_correct < 8 ){
-            // debug
-            console.log("incorrect answer detects");
-            // player loose the round (number_correct for reset position of plane)
-            loose_level(number_correct);
-        }
-    }
 }
 
 async function win_level(number_correct) {
@@ -88,12 +87,13 @@ async function win_level(number_correct) {
 // move plane to begin after each game 
 function reset_progress(number_correct) {
     // debug 
-    console.log("reset progress bar")
+    console.log("reset progress bar, number correct = ",number_correct)
     // reset position plane 
-    const currentMargin = parseInt(window.getComputedStyle(img).marginLeft) || 0;
-    img.style.marginLeft = (currentMargin - (50*number_correct)) + 'px';
+    img.style.marginLeft = "0px";
     // reset text 
-    document.getElementById("color_progress_bar").textContent="";
+    bar.textContent="";
+    // reset progress bar 
+    bar.style.width = "0%";
 }
 
 // create square for a new game
@@ -151,9 +151,5 @@ async function loose_level(number_correct) {
 }
 
 // debug plan 
-// 1  declenche tout car jeux dans move_plane et pas accessible quand erreur du joueur 
-// aucun reset de la bar de progress couleur donc attend que 1 bonne reponse pour afficher 1 mais jamais revient a 0%
-// l'avion reset bien
-// le texte innertext , detruit la div progress color donc bah n'existe pu 
 // create square le plus d'itération le plus ca fait n'importe quoi 
 // lors de la creation il faut pouvoir reperer les lignes pour boucler dessus et pas boucler sur la meme ligne 
