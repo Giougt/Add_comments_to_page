@@ -150,6 +150,10 @@ async function loose_level(number_correct) {
     reset_progress(number_correct);
 }
 
+
+function calculator(params) {
+    // win game or loose 
+}
 // debug plan 
 // create square le plus d'itération le plus ca fait n'importe quoi 
 // lors de la creation il faut pouvoir reperer les lignes pour boucler dessus et pas boucler sur la meme ligne 
