@@ -150,10 +150,34 @@ async function loose_level(number_correct) {
     reset_progress(number_correct);
 }
 
-
-function calculator(params) {
-    // win game or loose 
+// determine if the answer is true or false 
+// answer_user already defined and GET 
+function calculator(answer_user) {
+    let operation = random_ope();
+    let good_answer = eval(operation);
+    // return true if win
+    if (Number(answer_user) === good_answer){
+        return true;
+    }
+    else{
+        return false;
+    }
+    //return false if loose
 }
+
+// generate random operation
+function random_ope() {
+    const operator = ["-","*","+"];
+    // generate operation between 1 and 10, like (2(+-*)4)
+    let var1 = Math.floor(Math.random() * 10)+1;
+    let var2 = Math.floor(Math.random() * 10)+1;
+    // choice in list operator via random
+    let ope = operator[Math.floor(Math.random() * operator.length)];
+    // return operation (string)
+    let operation = ""+ var1 + ope + var2;
+    return operation
+}
+
 // debug plan 
 // create square le plus d'itération le plus ca fait n'importe quoi 
 // lors de la creation il faut pouvoir reperer les lignes pour boucler dessus et pas boucler sur la meme ligne 
